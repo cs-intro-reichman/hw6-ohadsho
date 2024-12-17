@@ -8,8 +8,8 @@ public class Runigram {
 		//// Hide / change / add to the testing code below, as needed.
 		
 		// Tests the reading and printing of an image:	
-		Color[][] tinypic = read("tinypic.ppm");
-		print(tinypic);
+	   Color[][] tinypic = read("tinypic.ppm");
+		  //print(tinypic);
 
 		// Creates an image which will be the result of various 
 		// image processing operations:
@@ -18,10 +18,13 @@ public class Runigram {
 		// Tests the horizontal flipping of an image:
 		image = flippedHorizontally(tinypic);
 		System.out.println();
-		print(image);
+		//print(image);
 		
 		//// Write here whatever code you need in order to test your work.
 		//// You can continue using the image array.
+		image = flippedVertically(tinypic);
+		System.out.println();
+		print(image);
 	}
 
 
@@ -77,16 +80,26 @@ public static Color[][] read(String fileName) {
 	 * Returns an image which is the horizontally flipped version of the given image. 
 	 */
 	public static Color[][] flippedHorizontally(Color[][] image) {
-		//// Replace the following statement with your code
-		return null;
+		Color [][] imageFlipped = new Color[image.length][image[0].length];
+		for (int i = 0; i < image.length; i++) {
+			for (int j = 0; j < image[i].length; j++) {
+				imageFlipped[i][j] = image[image.length -1 - i][ j];
+			}
+		}
+		return imageFlipped;
 	}
 	
 	/**
 	 * Returns an image which is the vertically flipped version of the given image. 
 	 */
 	public static Color[][] flippedVertically(Color[][] image){
-		//// Replace the following statement with your code
-		return null;
+		Color [][] imageFlipped = new Color[image.length][image[0].length];
+		for (int i = 0; i < image.length; i++) {
+			for (int j = 0; j < image[i].length; j++) {
+				imageFlipped[i][j] = image[image.length -1 - i][ j];
+			}
+		}
+		return imageFlipped;
 	}
 	
 	// Computes the luminance of the RGB values of the given pixel, using the formula 
