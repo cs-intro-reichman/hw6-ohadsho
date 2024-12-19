@@ -59,7 +59,6 @@ public static Color[][] read(String fileName) {
             image[i][j] = new Color(red, green, blue); // Create and assign Color object
         }
     }
-
     return image;
 }
 
@@ -168,8 +167,10 @@ public static Color[][] read(String fileName) {
 	 * values in the two input color.
 	 */
 	public static Color blend(Color c1, Color c2, double alpha) {
-		//// Replace the following statement with your code
-		return null;
+		int r = (int) (alpha * c1.getRed() + (1 - alpha) * c2.getRed());
+        int g = (int) (alpha * c1.getGreen() + (1 - alpha) * c2.getGreen());
+        int b = (int) (alpha * c1.getBlue() + (1 - alpha) * c2.getBlue());
+        return new Color(r, g, b);
 	}
 	
 	/**
@@ -179,9 +180,17 @@ public static Color[][] read(String fileName) {
 	 * The two images must have the same dimensions.
 	 */
 	public static Color[][] blend(Color[][] image1, Color[][] image2, double alpha) {
-		//// Replace the following statement with your code
-		return null;
-	}
+			int height = image1.length;
+			int width = image1[0].length;
+			Color[][] blend = new Color[height][width];
+			
+			for (int i = 0; i < height; i++) {
+				for (int j = 0; j < width; j++) {
+					blend[i][j] = blend(image1[i][j], image2[i][j], alpha);
+				}
+			}
+			return blend;
+		}
 
 	/**
 	 * Morphs the source image into the target image, gradually, in n steps.
