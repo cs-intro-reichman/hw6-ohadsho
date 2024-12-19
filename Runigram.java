@@ -32,8 +32,9 @@ public class Runigram {
 
 		image = scaled(tinypic,3,5);
 		System.out.println();
-		print(image);
+		//print(image);
 
+		morph(read("cake.ppm"), read("ironman.ppm"), 50);
 	}
 
 
@@ -199,8 +200,18 @@ public static Color[][] read(String fileName) {
 	 * of the source image.
 	 */
 	public static void morph(Color[][] source, Color[][] target, int n) {
-		//// Replace this comment with your code
-	}
+		
+		if (source.length != target.length || source[0].length != target[0].length) {
+            target = scaled(target, source[0].length, source.length);
+        }
+
+        for (int i = 0; i <= n; i++) {
+            double alpha = (double) (n - i) / n;
+            Color[][] blended = blend(source, target, alpha);
+            display(blended);
+            StdDraw.pause(500);
+        }
+    }	
 	
 	/** Creates a canvas for the given image. */
 	public static void setCanvas(Color[][] image) {
