@@ -28,6 +28,10 @@ public class Runigram {
 
 		image = grayScaled(tinypic);
 		System.out.println();
+		//print(image);
+
+		image = scaled(tinypic,3,5);
+		System.out.println();
 		print(image);
 
 	}
@@ -145,9 +149,17 @@ public static Color[][] read(String fileName) {
 	 * The image is scaled (resized) to have the given width and height.
 	 */
 	public static Color[][] scaled(Color[][] image, int width, int height) {
-		//// Replace the following statement with your code
-		return null;
+		double w = (double)image[0].length / width;
+        double h = (double)image.length / height;
+		Color [][] reSize = new Color[height][width];
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {	
+				reSize[i][j] = image[ (int)(i*h)][(int)(j*w)];
+			}
+		}
+		return reSize;
 	}
+
 	
 	/**
 	 * Computes and returns a blended color which is a linear combination of the two given
